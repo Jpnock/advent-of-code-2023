@@ -2,13 +2,10 @@ package main
 
 import (
 	"bufio"
-	"errors"
 	"io"
 	"log/slog"
 	"os"
 )
-
-var ErrNoNumbersInLine = errors.New("the provided line contained no numbers")
 
 func outerPositiveSingleDigits(line string) (firstNum, lastNum *int) {
 	target := &firstNum
