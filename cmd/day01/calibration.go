@@ -33,11 +33,14 @@ func generateAlignmentValue(r io.Reader) int {
 	for reader.Scan() {
 		line := reader.Text()
 		firstNum, lastNum := outerPositiveSingleDigits(line)
-		if firstNum != nil {
-			slog.Debug("got vals", "first", *firstNum, "last", *lastNum)
-			alignmentValue += *firstNum * 10
-			alignmentValue += *lastNum
+		if firstNum == nil {
+			continue
 		}
+
+		const tensUnitMultiplier = 10
+		slog.Debug("got vals", "first", *firstNum, "last", *lastNum)
+		alignmentValue += *firstNum * tensUnitMultiplier
+		alignmentValue += *lastNum
 	}
 	return alignmentValue
 }
